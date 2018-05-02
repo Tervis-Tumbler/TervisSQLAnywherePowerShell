@@ -1,4 +1,4 @@
-﻿function Get-TervisSQLAnywhereConnection {
+function Get-TervisSQLAnywhereConnection {
     param (
         [Parameter(Mandatory)]$EnvironmentName
     )
@@ -35,7 +35,7 @@ function Get-TervisSQLAnywhereCredential {
     Get-PasswordstateSybaseDatabaseEntryDetails -PasswordID $WCSEnvironmentState.SybaseQCUserPasswordEntryID
 }
 
-function Invoke-DBUnloadToWCSGitRepository {
+function Invoke-TervisDBUnloadToWCSGitRepository {
     param (
         [Parameter(Mandatory)]$EnvironmentName
     )
