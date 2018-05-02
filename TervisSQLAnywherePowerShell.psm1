@@ -1,4 +1,4 @@
-function Get-TervisSQLAnywhereConnection {
+﻿function Get-TervisSQLAnywhereConnection {
     param (
         [Parameter(Mandatory)]$EnvironmentName
     )
@@ -47,7 +47,7 @@ function Invoke-TervisDBUnloadToWCSGitRepository {
     $DBUnloadDestinationPath = "$(Get-WCSJavaApplicationGitRepositoryPath)\DBUnload\$($EnvironmentName)"
     
     Invoke-Command -ComputerName $SybaseDatabaseEntryDetails.ServerName -ScriptBlock {
-        dbunload -no -c "$using:ConnectionString" -r "$using:DBUnloadOutputPath" -y
+        dbunload -n -c "$using:ConnectionString" -r "$using:DBUnloadOutputPath" -y
     }
 
     try {
