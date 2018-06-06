@@ -37,14 +37,15 @@ function Get-TervisSQLAnywhereCredential {
 
 function Invoke-TervisDBUnloadToWCSGitRepository {
     param (
-        [Parameter(Mandatory)]$EnvironmentName
+        [Parameter(Mandatory)]$EnvironmentName,
+        [Parameter(Mandatory)]$WCSJavaApplicationGitRepositoryPath
     )
 
     $ConnectionString = Get-TervisSQLAnywhereConnectionString -EnvironmentName $EnvironmentName
     $SybaseDatabaseEntryDetails = Get-TervisSQLAnywhereCredential -EnvironmentName $EnvironmentName
     $DBUnloadOutputPath = "C:\dbunload.sql"
     $DBUnloadOutputPathRemote = $DBUnloadOutputPath | ConvertTo-RemotePath -ComputerName $SybaseDatabaseEntryDetails.ServerName
-    $DBUnloadDestinationPath = "$(Get-WCSJavaApplicationGitRepositoryPath)\DBUnload\$($EnvironmentName)"
+    $DBUnloadDestinationPath = "$WCSJavaApplicationGitRepositoryPath\DBUnload\$($EnvironmentName)"
     
     Invoke-Command -ComputerName $SybaseDatabaseEntryDetails.ServerName -ScriptBlock {
         dbunload -n -c "$using:ConnectionString" -r "$using:DBUnloadOutputPath" -y
