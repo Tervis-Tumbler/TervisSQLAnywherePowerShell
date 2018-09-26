@@ -32,7 +32,7 @@ function Get-TervisSQLAnywhereCredential {
         [Parameter(Mandatory)]$EnvironmentName
         )
     $WCSEnvironmentState = Get-WCSEnvironmentState -EnvironmentName $EnvironmentName
-    Get-PasswordstateSybaseDatabaseEntryDetails -PasswordID $WCSEnvironmentState.SybaseQCUserPasswordEntryID
+    Get-PasswordstateSybaseDatabaseEntryDetails -GUID $WCSEnvironmentState.SybaseQCUserPasswordEntryGUID
 }
 
 function Invoke-TervisDBUnloadToWCSGitRepository {
